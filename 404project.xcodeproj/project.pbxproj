@@ -30,6 +30,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2EA52C8C2DDB333C005A0892 /* كافيه */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "كافيه";
+			sourceTree = "<group>";
+		};
 		6B9CE07B2DD5BFB200870846 /* 404project */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = 404project;
@@ -80,6 +85,7 @@
 		6B9CE0702DD5BFB200870846 = {
 			isa = PBXGroup;
 			children = (
+				2EA52C8C2DDB333C005A0892 /* كافيه */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
 				6B9CE07B2DD5BFB200870846 /* 404project */,
 				6B9CE0952DD5BFB400870846 /* 404projectTests */,
@@ -114,6 +120,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2EA52C8C2DDB333C005A0892 /* كافيه */,
 				6B9CE07B2DD5BFB200870846 /* 404project */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
 			);
