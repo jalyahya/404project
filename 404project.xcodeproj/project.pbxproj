@@ -47,11 +47,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6B9CE07B2DD5BFB200870846 /* 404project */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = 404project;
-			sourceTree = "<group>";
-		};
 		6B9CE0952DD5BFB400870846 /* 404projectTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = 404projectTests;
@@ -65,6 +60,11 @@
 		6B9CE1A62DDB0A9500870846 /* المستودع */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "المستودع";
+			sourceTree = "<group>";
+		};
+		6B9CE45F2DDD27F400870846 /* 404 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = 404;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -111,9 +111,9 @@
 		6B9CE0702DD5BFB200870846 = {
 			isa = PBXGroup;
 			children = (
+				6B9CE45F2DDD27F400870846 /* 404 */,
 				2E075BC22DDCCA95001E7309 /* Resources */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
-				6B9CE07B2DD5BFB200870846 /* 404project */,
 				6B9CE0952DD5BFB400870846 /* 404projectTests */,
 				6B9CE09F2DD5BFB400870846 /* 404projectUITests */,
 				6B9CE07A2DD5BFB200870846 /* Products */,
@@ -146,8 +146,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6B9CE07B2DD5BFB200870846 /* 404project */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
+				6B9CE45F2DDD27F400870846 /* 404 */,
 			);
 			name = 404project;
 			packageProductDependencies = (
@@ -443,7 +443,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 3XL8Q7482G;
+				DEVELOPMENT_TEAM = 76WT6NTMN2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -455,7 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Jumana;
+				PRODUCT_BUNDLE_IDENTIFIER = "Jumana-.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -470,7 +470,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 3XL8Q7482G;
+				DEVELOPMENT_TEAM = 76WT6NTMN2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -482,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Jumana;
+				PRODUCT_BUNDLE_IDENTIFIER = "Jumana-.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
