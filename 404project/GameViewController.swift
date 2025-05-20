@@ -8,8 +8,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         if let view = self.view as! SKView? {
-            // تحميل أول مشهد (FirstPage)
-            let scene = FirstPage(size: view.bounds.size)
+            // تحميل أول مشهد (GameScene2)
+            let scene = GameScene2(size: view.bounds.size)
             scene.scaleMode = .aspectFill
 
             // عرض المشهد
