@@ -1,4 +1,6 @@
 import SpriteKit
+import SwiftUI
+
 
 class CratesPage: SKScene {
 
@@ -42,11 +44,13 @@ class CratesPage: SKScene {
             view?.presentScene(nextScene, transition: transition)
 
         } else if tappedNode.name == "phone" {
-            let phoneScene = PhonePage(size: size)
-            phoneScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(with: .black, duration: 2.5)
-            view?.presentScene(phoneScene, transition: transition)
+            if let rootVC = view?.window?.rootViewController {
+                let LockScreen = UIHostingController(rootView: LockScreen())
+                LockScreen.modalPresentationStyle = .fullScreen
+                rootVC.present(LockScreen, animated: true, completion: nil)
+            }
         }
+
     }
 
     // ✅ نفس تصميم البار في FirstPage

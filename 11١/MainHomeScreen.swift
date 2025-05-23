@@ -1,11 +1,5 @@
-//
-//  MainHomeScreen.swift
-//  11١
-//
-//  Created by Rahaf ALDossari on 25/11/1446 AH.
-//
-
 import SwiftUI
+import SpriteKit
 
 struct HomeScreen: View {
     @Binding var isUnlocked: Bool
@@ -31,6 +25,21 @@ struct HomeScreen: View {
                 Color("2").ignoresSafeArea()
 
                 VStack {
+                    // ✅ زر X بنفس ستايل LockScreen
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            presentCratesPage()
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .foregroundColor(.white)
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 20)
+                    }
+
                     Spacer()
 
                     ZStack {
@@ -68,5 +77,23 @@ struct HomeScreen: View {
                 }
             }
         }
+    }
+
+    // ✅ ينقل مباشرة إلى CratesPage
+    func presentCratesPage() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+
+        let skView = SKView(frame: window.bounds)
+        let cratesScene = CratesPage(size: skView.bounds.size)
+        cratesScene.scaleMode = .aspectFill
+        skView.presentScene(cratesScene)
+
+        let vc = UIViewController()
+        vc.view = skView
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
     }
 }

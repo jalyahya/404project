@@ -1,13 +1,7 @@
-//
-//  ContentView.swift
-//  11١
-//
-//  Created by Rahaf ALDossari on 25/11/1446 AH.
-//
-
 import SwiftUI
 
 struct LockScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var enteredCode = ""
     @State private var isUnlocked = false
     let correctCode = "1110"
@@ -21,6 +15,21 @@ struct LockScreen: View {
                 Color("2").ignoresSafeArea()
 
                 VStack {
+                    // ✅ زر الإغلاق العلوي (✕)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            dismiss() // يرجع للمشهد السابق (CratesPage)
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .foregroundColor(.white)
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 20)
+                    }
+
                     Spacer()
 
                     ZStack {
@@ -32,6 +41,7 @@ struct LockScreen: View {
                         VStack {
                             Spacer()
 
+                            // نقاط الرمز
                             HStack(spacing: 20) {
                                 ForEach(0..<4, id: \.self) { index in
                                     Circle()
@@ -43,6 +53,7 @@ struct LockScreen: View {
                             }
                             .padding(.bottom, 50)
 
+                            // لوحة الأرقام
                             Keypad(code: $enteredCode, onCodeEntered: checkCode)
                                 .frame(width: 260, height: 320)
 
@@ -68,4 +79,3 @@ struct LockScreen: View {
         }
     }
 }
-
