@@ -325,7 +325,15 @@ class CafeScene: SKScene {
             door.texture = SKTexture(imageNamed: "DoorOpen")
             node.removeFromParent()
             GameState.shared.markAsUsed("GKey")
-        } else {
+            
+            run(SKAction.wait(forDuration: 1.0)) { [weak self] in
+                guard let self = self, let view = self.view else { return }
+                let nextScene = FirstPage(size: self.size)
+                nextScene.scaleMode = self.scaleMode
+                view.presentScene(nextScene, transition: .crossFade(withDuration: 1.0))
+            }
+        }
+ else {
             let shrink = SKAction.scale(to: 0.3, duration: 0.2)
             node.run(shrink)
             node.run(SKAction.move(to: originalPos, duration: 0.3))

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="73px" viewBox="0 0 74 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>تطبيق محادثات</title>
+    <defs>
+        <linearGradient x1="50%" y1="46.7843669%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#46E761" offset="0%"></stop>
+            <stop stop-color="#8CF39E" offset="64.2591783%"></stop>
+            <stop stop-color="#74F089" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="High-fid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="الجوال-للايباد" transform="translate(-1060, -126)">
+            <g id="Group-7" transform="translate(200, 36)">
+                <g id="تطبيق-محادثات" transform="translate(860, 90)">
+                    <rect id="Rectangle" fill="#46E761" x="1.09139364e-11" y="0" width="74" height="73" rx="12"></rect>
+                    <path d="M15.7294416,17.4467564 L65.7294416,33.7957018 C70.6628915,35.4088359 74,40.0109731 74,45.2014576 L74,61 C74,67.627417 68.627417,73 62,73 L12,73 C5.372583,73 0,67.627417 0,61 L1.77635684e-15,28.8525122 C1.77635684e-15,22.2250952 5.372583,16.8525122 12,16.8525122 C13.2667195,16.8525122 14.5254505,17.0530767 15.7294416,17.4467564 Z" id="Rectangle" fill="url(#linearGradient-1)"></path>
+                    <g id="Group-5" transform="translate(4, 7)" fill="#FFFFFF">
+                        <ellipse id="Oval" cx="23" cy="14.5" rx="18" ry="14.5"></ellipse>
+                        <polygon id="Triangle" points="8 18 16 27 0 27"></polygon>
+                    </g>
+                    <g id="Group-5" transform="translate(50.5, 47.5) scale(-1, 1) translate(-50.5, -47.5)translate(30, 33)" fill="#FFFFFF">
+                        <ellipse id="Oval" cx="23" cy="14.5" rx="18" ry="14.5"></ellipse>
+                        <polygon id="Triangle" points="8 18 16 27 0 27"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
