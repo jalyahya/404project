@@ -67,14 +67,14 @@
 			path = 404;
 			sourceTree = "<group>";
 		};
-		6BDC56EE2DE0F707005B70D8 /* 11١ */ = {
+		6BDC56EE2DE0F707005B70D8 /* IPhone */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "11١";
+			path = IPhone;
 			sourceTree = "<group>";
 		};
-		6BDC56F82DE0F74C005B70D8 /* 11 */ = {
+		6BDC56F82DE0F74C005B70D8 /* TheEnd */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = 11;
+			path = TheEnd;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -121,8 +121,8 @@
 		6B9CE0702DD5BFB200870846 = {
 			isa = PBXGroup;
 			children = (
-				6BDC56F82DE0F74C005B70D8 /* 11 */,
-				6BDC56EE2DE0F707005B70D8 /* 11١ */,
+				6BDC56F82DE0F74C005B70D8 /* TheEnd */,
+				6BDC56EE2DE0F707005B70D8 /* IPhone */,
 				6B9CE45F2DDD27F400870846 /* 404 */,
 				2E075BC22DDCCA95001E7309 /* Resources */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
@@ -160,8 +160,8 @@
 			fileSystemSynchronizedGroups = (
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
 				6B9CE45F2DDD27F400870846 /* 404 */,
-				6BDC56EE2DE0F707005B70D8 /* 11١ */,
-				6BDC56F82DE0F74C005B70D8 /* 11 */,
+				6BDC56EE2DE0F707005B70D8 /* IPhone */,
+				6BDC56F82DE0F74C005B70D8 /* TheEnd */,
 			);
 			name = 404project;
 			packageProductDependencies = (
