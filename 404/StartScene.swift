@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Start: SKScene {
+class StartScene: SKScene {
     override func didMove(to view: SKView) {
         setupBackground()
         showTwoImagesSideBySide()

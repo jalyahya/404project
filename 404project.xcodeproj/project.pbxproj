@@ -47,6 +47,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2E28ABB62DE2793C006E078B /* Phone-shatha */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Phone-shatha";
+			sourceTree = "<group>";
+		};
 		5D358AC22DE2461600E017A5 /* Intro */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Intro;
@@ -72,9 +77,9 @@
 			path = 404;
 			sourceTree = "<group>";
 		};
-		6BDC56EE2DE0F707005B70D8 /* IPhone */ = {
+		6BDC56EE2DE0F707005B70D8 /* Phone-rahaf */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = IPhone;
+			path = "Phone-rahaf";
 			sourceTree = "<group>";
 		};
 		6BDC56F82DE0F74C005B70D8 /* TheEnd */ = {
@@ -126,12 +131,13 @@
 		6B9CE0702DD5BFB200870846 = {
 			isa = PBXGroup;
 			children = (
+				2E28ABB62DE2793C006E078B /* Phone-shatha */,
 				5D358AC22DE2461600E017A5 /* Intro */,
-				6BDC56F82DE0F74C005B70D8 /* TheEnd */,
-				6BDC56EE2DE0F707005B70D8 /* IPhone */,
 				6B9CE45F2DDD27F400870846 /* 404 */,
 				2E075BC22DDCCA95001E7309 /* Resources */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
+				6BDC56EE2DE0F707005B70D8 /* Phone-rahaf */,
+				6BDC56F82DE0F74C005B70D8 /* TheEnd */,
 				6B9CE0952DD5BFB400870846 /* 404projectTests */,
 				6B9CE09F2DD5BFB400870846 /* 404projectUITests */,
 				6B9CE07A2DD5BFB200870846 /* Products */,
@@ -164,10 +170,11 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2E28ABB62DE2793C006E078B /* Phone-shatha */,
 				5D358AC22DE2461600E017A5 /* Intro */,
 				6B9CE1A62DDB0A9500870846 /* المستودع */,
 				6B9CE45F2DDD27F400870846 /* 404 */,
-				6BDC56EE2DE0F707005B70D8 /* IPhone */,
+				6BDC56EE2DE0F707005B70D8 /* Phone-rahaf */,
 				6BDC56F82DE0F74C005B70D8 /* TheEnd */,
 			);
 			name = 404project;
@@ -464,13 +471,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 76WT6NTMN2;
+				DEVELOPMENT_TEAM = 3XL8Q7482G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,13 +499,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 76WT6NTMN2;
+				DEVELOPMENT_TEAM = 3XL8Q7482G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

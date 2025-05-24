@@ -11,7 +11,7 @@ import SpriteKit
 struct MainPage: View {
     var body: some View {
         GeometryReader { geo in
-            SpriteView(scene: Start(size: geo.size))
+            SpriteView(scene: StartScene(size: geo.size))
 
                 .ignoresSafeArea()
         }
