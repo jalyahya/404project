@@ -16,17 +16,15 @@ class StartScene: SKScene {
         addEatingCat()
         SoundManager.shared.playSoundOnce(named: "Street", withExtension: "wav")
     }
-
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         let nodesAtPoint = nodes(at: location)
-        
+
         if nodesAtPoint.contains(where: { $0.name == "imageButton" }) {
-            let scene = NewspaperScene(size: self.size)
-            scene.scaleMode = self.scaleMode
-            let transition = SKTransition.fade(with: .black, duration: 2.5)
-            self.view?.presentScene(scene, transition: transition)
+            GameViewController.shared?.showCloudIntro() // ⬅️ افتحي SwiftUI View
         }
     }
 

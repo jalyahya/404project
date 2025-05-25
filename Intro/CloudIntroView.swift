@@ -5,12 +5,10 @@
 //  Created by Rahaf ALDossari on 26/11/1446 AH.
 //
 
-
 import SwiftUI
 
 struct CloudIntroView: View {
     @State private var currentLine = 0
-    @State private var showNextView = false
     
     let lines = [
         "في 23 اغسطس 2010",
@@ -22,14 +20,13 @@ struct CloudIntroView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Color("1")
-                    .ignoresSafeArea()
+                Color("1").ignoresSafeArea()
                 
                 VStack {
                     Spacer()
                     
                     CloudsView()
-                        .frame(height: geo.size.height * 0.2) // ← مرن
+                        .frame(height: geo.size.height * 0.2)
                     
                     Spacer()
                     
@@ -38,20 +35,17 @@ struct CloudIntroView: View {
                     Spacer()
                     
                     Button(action: {
-                        showNextView = true
+                        GameViewController.shared?.showNewspaperScene()
                     }) {
                         Image("B")
                             .resizable()
-                            .frame(width: geo.size.width * 0.12, height: geo.size.width * 0.12) // ← مرن
+                            .frame(width: geo.size.width * 0.12, height: geo.size.width * 0.12)
                             .padding()
                     }
                 }
                 .onAppear {
                     showLinesSequentially()
                 }
-            }
-            .fullScreenCover(isPresented: $showNextView) {
-                NextView()
             }
         }
     }
@@ -64,14 +58,5 @@ struct CloudIntroView: View {
                 }
             }
         }
-    }
-}
-
-
-struct NextView: View {
-    var body: some View {
-        Text("Next screen")
-            .font(.largeTitle)
-            .foregroundColor(.black)
     }
 }
