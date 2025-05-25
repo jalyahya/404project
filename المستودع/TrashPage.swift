@@ -43,7 +43,7 @@ class TrashPage: SKScene {
         } else if tappedNode.name == "close" {
             let backScene = CratesPage(size: size)
             backScene.scaleMode = .aspectFill
-            view?.presentScene(backScene, transition: SKTransition.fade(withDuration: 2.5))
+            view?.presentScene(backScene, transition: SKTransition.fade(withDuration: 2.0))
         } else if tappedNode.name == "paperClose" {
             childNode(withName: "zoomedPaper")?.removeFromParent()
             childNode(withName: "paperClose")?.removeFromParent()

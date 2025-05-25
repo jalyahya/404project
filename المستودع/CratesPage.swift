@@ -1,15 +1,14 @@
 import SpriteKit
 import SwiftUI
 
-
 class CratesPage: SKScene {
 
-    private var inventorySlots: [SKShapeNode] = []  // ✅ شريط الأدلة
+    private var inventorySlots: [SKShapeNode] = []
 
     override func didMove(to view: SKView) {
         backgroundColor = .white
 
-        // الخلفية: المستودع بعد تحريك الكراتين
+        // الخلفية
         let background = SKSpriteNode(imageNamed: "المستودع٢")
         background.position = CGPoint(x: size.width / 2, y: size.height / 2)
         background.size = size
@@ -22,14 +21,26 @@ class CratesPage: SKScene {
         trashButton.position = CGPoint(x: size.width * 0.95, y: size.height * 0.24)
         addChild(trashButton)
 
-        // زر شفاف فوق الجوال الأسود يسار
+        // زر شفاف فوق الجوال الأسود
         let phoneButton = SKSpriteNode(color: .clear, size: CGSize(width: 80, height: 100))
         phoneButton.name = "phone"
         phoneButton.position = CGPoint(x: size.width * 0.06, y: size.height * 0.07)
         addChild(phoneButton)
 
-        // ✅ نادينا شريط الأدلة
+        // زر السهم للأسفل
+        addDownArrow()
+
+        // شريط الأدلة
         setupInventoryBar()
+    }
+
+    private func addDownArrow() {
+        let downButton = SKSpriteNode(imageNamed: "ArrowDown")
+        downButton.name = "down"
+        downButton.size = CGSize(width: 60, height: 60)
+        downButton.position = CGPoint(x: size.width / 2, y: size.height * 0.05)
+        downButton.zPosition = 100
+        addChild(downButton)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -40,20 +51,33 @@ class CratesPage: SKScene {
         if tappedNode.name == "trash" {
             let nextScene = TrashPage(size: size)
             nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(with: .black, duration: 2.5)
-            view?.presentScene(nextScene, transition: transition)
+            view?.presentScene(nextScene, transition: .fade(withDuration: 2.0))
 
         } else if tappedNode.name == "phone" {
-            if let rootVC = view?.window?.rootViewController {
-                let LockScreen = UIHostingController(rootView: LockScreen())
-                LockScreen.modalPresentationStyle = .fullScreen
-                rootVC.present(LockScreen, animated: true, completion: nil)
-            }
-        }
+            if let view = self.view, let rootVC = view.window?.rootViewController {
+                let fadeView = UIView(frame: view.bounds)
+                fadeView.backgroundColor = UIColor.black
+                fadeView.alpha = 0.0
+                view.addSubview(fadeView)
 
+                UIView.animate(withDuration: 2.0, animations: {
+                    fadeView.alpha = 1.0
+                }, completion: { _ in
+                    let lockScreen = UIHostingController(rootView: LockScreen())
+                    lockScreen.modalPresentationStyle = .fullScreen
+                    rootVC.present(lockScreen, animated: false) {
+                        fadeView.removeFromSuperview()
+                    }
+                })
+            }
+
+        } else if tappedNode.name == "down" {
+            let nextScene = CafeScene(size: size)
+            nextScene.scaleMode = .aspectFill
+            view?.presentScene(nextScene, transition: .fade(withDuration: 1.0))
+        }
     }
 
-    // ✅ نفس تصميم البار في FirstPage
     private func setupInventoryBar() {
         let slotSize = CGSize(width: 65, height: 70)
         let totalSlots = 5

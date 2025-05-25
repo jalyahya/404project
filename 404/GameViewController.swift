@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         GameViewController.shared = self
         
         if let view = self.view as? SKView {
-            let scene = StartScene(size: view.bounds.size)
+            let scene = FirstPage(size: view.bounds.size)
             scene.scaleMode = .resizeFill
             view.presentScene(scene)
         }

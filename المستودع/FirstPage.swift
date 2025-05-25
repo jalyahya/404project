@@ -1,14 +1,15 @@
 import SpriteKit
 
 class FirstPage: SKScene {
-    
+
     private var inventorySlots: [SKShapeNode] = []  // ✅ شريط الأدلة
 
     override func didMove(to view: SKView) {
         backgroundColor = .white
         setupBackground()
         setupButton()
-        setupInventoryBar()  // ✅ نادينا شريط الأدلة
+        setupInventoryBar()
+        addDirectionButtons() // ✅ أضفنا زر السهم
     }
 
     // الخلفية
@@ -17,7 +18,7 @@ class FirstPage: SKScene {
         let bg = SKSpriteNode(texture: bgTexture)
         bg.zPosition = -1
         bg.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        bg.aspectFillToSize(size) // الامتداد الخاص بتكبير الصورة
+        bg.aspectFillToSize(size)
         addChild(bg)
     }
 
@@ -29,6 +30,22 @@ class FirstPage: SKScene {
         addChild(tapArea)
     }
 
+    // ✅ زر السهم (down)
+    func addDirectionButtons() {
+        let buttonSize = CGSize(width: 60, height: 60)
+
+        let downButton = SKSpriteNode(imageNamed: "ArrowDown")
+        downButton.name = "down"
+        downButton.size = buttonSize
+
+        // ✅ ضفنا السهم في الوسط تحت شوي
+        downButton.position = CGPoint(x: size.width / 2, y: size.height * 0.05)
+
+        downButton.zPosition = 100
+        addChild(downButton)
+    }
+
+
     // التفاعل مع الزر
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
@@ -37,18 +54,23 @@ class FirstPage: SKScene {
         if tappedNode.name == "toCrates" {
             let nextScene = CratesPage(size: size)
             nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(with: .black, duration: 2.5)
+            let transition = SKTransition.fade(with: .black, duration: 2.0)
             view?.presentScene(nextScene, transition: transition)
+        } else if tappedNode.name == "down" {
+            let cafeScene = CafeScene(size: self.size)
+            cafeScene.scaleMode = self.scaleMode
+            view?.presentScene(cafeScene, transition: .fade(withDuration: 1.0))
         }
     }
 
+    // شريط الأدلة
     private func setupInventoryBar() {
-        let slotSize = CGSize(width: 65, height: 70) // ✅ نفس قياسات NewspaperScene
+        let slotSize = CGSize(width: 65, height: 70)
         let totalSlots = 5
         let spacing: CGFloat = 20
         let totalWidth = CGFloat(totalSlots) * slotSize.width + CGFloat(totalSlots - 1) * spacing
-        let boxHeight: CGFloat = 90 // ✅ تصغير ارتفاع خلفية البار
-        let topY: CGFloat = size.height - 130 // يبقى مكانه مرتفع
+        let boxHeight: CGFloat = 90
+        let topY: CGFloat = size.height - 130
 
         let inventoryBackground = SKShapeNode(rectOf: CGSize(width: totalWidth + 40, height: boxHeight), cornerRadius: 20)
         inventoryBackground.fillColor = UIColor(white: 0.2, alpha: 0.6)
