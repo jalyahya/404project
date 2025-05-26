@@ -87,7 +87,7 @@ struct HomeScreen: View {
         }
 
         let skView = SKView(frame: window.bounds)
-        let cratesScene = CratesPage(size: skView.bounds.size)
+        let cratesScene = FirstPage(size: skView.bounds.size)
         cratesScene.scaleMode = .aspectFill
         skView.presentScene(cratesScene)
 

@@ -41,7 +41,7 @@ class TrashPage: SKScene {
         if tappedNode.name == "paper" {
             showPaper()
         } else if tappedNode.name == "close" {
-            let backScene = CratesPage(size: size)
+            let backScene = FirstPage(size: size)
             backScene.scaleMode = .aspectFill
             view?.presentScene(backScene, transition: SKTransition.fade(withDuration: 1.5))
         } else if tappedNode.name == "paperClose" {

@@ -1,10 +1,14 @@
 import SpriteKit
+import SwiftUI
 
 class FirstPage: SKScene {
-
     private var inventorySlots: [SKShapeNode] = []
     private var crateBox: SKSpriteNode!
     private var background: SKSpriteNode!
+    private var door: SKSpriteNode!
+    private var keyNode: SKSpriteNode!
+    private var draggedNode: SKSpriteNode?
+    private var originalPosition: CGPoint?
 
     override func didMove(to view: SKView) {
         backgroundColor = .white
@@ -13,75 +17,148 @@ class FirstPage: SKScene {
         setupBackground()
         setupInventoryBar()
         addDirectionButtons()
+        addKeyToInventory()
+        addInteractiveButtons() // ✅ أزرار الزبالة والجوال
     }
 
     func setupBackground() {
-        // ✅ الخلفية
-        background = SKSpriteNode(imageNamed: "المستودع١")
+        background = SKSpriteNode(imageNamed: "المستودع١١")
         background.zPosition = -1
         background.position = CGPoint(x: size.width / 2, y: size.height / 2)
         background.aspectFillToSize(size)
         addChild(background)
 
-        // ✅ الكراتين
-        crateBox = SKSpriteNode(imageNamed: "الكراتين١")
+        crateBox = SKSpriteNode(imageNamed: "الكراتين")
         crateBox.zPosition = 0
-        crateBox.size = CGSize(width: 365.92, height: 484.67)
+        crateBox.size = CGSize(width: 365.43, height: 478.88)
         crateBox.position = CGPoint(x: 550, y: 330)
         crateBox.name = "crate"
         addChild(crateBox)
+
+        door = SKSpriteNode(imageNamed: "DoorOpen1")
+        door.zPosition = 0.2
+        door.size = CGSize(width: 239, height: 263)
+        door.position = CGPoint(x: 493, y: 470)
+        door.isHidden = true
+        door.name = "door"
+        addChild(door)
     }
 
-    // ✅ زر السهم (down)
+    func addKeyToInventory() {
+        keyNode = SKSpriteNode(imageNamed: "Key0")
+        keyNode.name = "Key0"
+        keyNode.setScale(0.25)
+        keyNode.zPosition = 12
+        keyNode.position = inventorySlots[0].position
+        addChild(keyNode)
+    }
+
     func addDirectionButtons() {
-        let buttonSize = CGSize(width: 60, height: 60)
         let downButton = SKSpriteNode(imageNamed: "ArrowDown")
         downButton.name = "down"
-        downButton.size = buttonSize
+        downButton.size = CGSize(width: 60, height: 60)
         downButton.position = CGPoint(x: size.width / 2, y: size.height * 0.05)
         downButton.zPosition = 100
         addChild(downButton)
+    }
+
+    func addInteractiveButtons() {
+        // زر الزبالة (موقع تقديري، غيره حسب التصميم)
+        let trashButton = SKSpriteNode(color: .clear, size: CGSize(width: 100, height: 100))
+        trashButton.name = "trash"
+        trashButton.position = CGPoint(x: size.width - 60, y: size.height * 0.2)
+        trashButton.zPosition = 200
+        addChild(trashButton)
+
+        // زر الجوال (موقع تقديري، غيره حسب التصميم)
+        let phoneButton = SKSpriteNode(color: .clear, size: CGSize(width: 80, height: 100))
+        phoneButton.name = "phone"
+        phoneButton.position = CGPoint(x: size.width * 0.04, y: size.height * 0.05)
+        phoneButton.zPosition = 200
+        addChild(phoneButton)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         let tappedNode = atPoint(location)
 
-        if tappedNode.name == "crate" {
-            // ✅ 1. حرك الكرتون لليسار
-            let moveLeft = SKAction.move(to: CGPoint(x: 127.49, y: 275.65), duration: 0.5)
+        switch tappedNode.name {
+        case "crate":
+            let moveLeft = SKAction.move(to: CGPoint(x: 150, y: 275), duration: 0.5)
+            let revealDoor = SKAction.run { self.door.isHidden = false }
+            crateBox.run(SKAction.sequence([moveLeft, revealDoor]))
 
-            // ✅ 2. غير الخلفية والصورة بعد الحركة
-            let changeTexture = SKAction.run {
-                self.background.texture = SKTexture(imageNamed: "المستودع٢")
-                self.crateBox.texture = SKTexture(imageNamed: "الكراتين٢")
-                self.crateBox.size = CGSize(width: 365.43, height: 478.88)
-                self.crateBox.position = CGPoint(x: 350, y: 275.65)
-            }
+        case "Key0":
+            draggedNode = keyNode
+            originalPosition = keyNode.position
+            keyNode.run(SKAction.scale(to: 0.4, duration: 0.1))
 
-            // ✅ 3. تأخير خفيف
-            let waitBeforeNextScene = SKAction.wait(forDuration: 0.8)
-
-            // ✅ 4. الانتقال لمشهد CratesPage
-            let goToCrates = SKAction.run {
-                let cratesScene = CratesPage(size: self.size)
-                cratesScene.scaleMode = self.scaleMode
-                self.view?.presentScene(cratesScene, transition: .fade(withDuration: 1.5))
-            }
-
-            // ✅ 5. تنفيذ التسلسل
-            let sequence = SKAction.sequence([moveLeft, changeTexture, waitBeforeNextScene, goToCrates])
-            crateBox.run(sequence)
-        
-
-        } else if tappedNode.name == "down" {
+        case "down":
+            let transition = SKTransition.push(with: .down, duration: 0.8)
             let cafeScene = CafeScene(size: self.size)
-            cafeScene.scaleMode = self.scaleMode
-            view?.presentScene(cafeScene, transition: .fade(withDuration: 1.5))
+            cafeScene.scaleMode = .aspectFill
+            self.view?.presentScene(cafeScene, transition: transition)
+
+        case "trash":
+            let transition = SKTransition.fade(withDuration: 1.2)
+            let nextScene = TrashPage(size: self.size)
+            nextScene.scaleMode = .aspectFill
+            view?.presentScene(nextScene, transition: transition)
+
+        case "phone":
+            if let view = self.view, let rootVC = view.window?.rootViewController {
+                let fadeView = UIView(frame: view.bounds)
+                fadeView.backgroundColor = UIColor.black
+                fadeView.alpha = 0.0
+                view.addSubview(fadeView)
+
+                UIView.animate(withDuration: 1.5, animations: {
+                    fadeView.alpha = 1.0
+                }, completion: { _ in
+                    let lockScreen = UIHostingController(rootView: LockScreen())
+                    lockScreen.modalPresentationStyle = .fullScreen
+                    rootVC.present(lockScreen, animated: false) {
+                        fadeView.removeFromSuperview()
+                    }
+                })
+            }
+
+        default:
+            break
         }
     }
 
-    // ✅ شريط الأدلة
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first, let node = draggedNode else { return }
+        node.position = touch.location(in: self)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let node = draggedNode else { return }
+
+        if node.name == "Key0", node.frame.intersects(door.frame) {
+            door.texture = SKTexture(imageNamed: "DoorClosed1")
+            node.removeFromParent()
+
+            let wait = SKAction.wait(forDuration: 0.1)
+            let transition = SKTransition.crossFade(withDuration: 1.0)
+            let changeScene = SKAction.run {
+                if let view = self.view {
+                    let endScene = TheEnd1(size: self.size)
+                    endScene.scaleMode = .aspectFill
+                    view.presentScene(endScene, transition: transition)
+                }
+            }
+            run(SKAction.sequence([wait, changeScene]))
+        } else {
+            node.run(SKAction.move(to: originalPosition ?? .zero, duration: 0.3))
+            node.run(SKAction.scale(to: 0.25, duration: 0.2))
+        }
+
+        draggedNode = nil
+        originalPosition = nil
+    }
+
     private func setupInventoryBar() {
         let slotSize = CGSize(width: 65, height: 70)
         let totalSlots = 5
