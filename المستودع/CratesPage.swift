@@ -4,16 +4,27 @@ import SwiftUI
 class CratesPage: SKScene {
 
     private var inventorySlots: [SKShapeNode] = []
+    private var crateBox: SKSpriteNode!
+    private var background: SKSpriteNode!
 
     override func didMove(to view: SKView) {
         backgroundColor = .white
+        self.anchorPoint = CGPoint(x: 0, y: 0)
 
         // الخلفية
-        let background = SKSpriteNode(imageNamed: "المستودع٢")
+        background = SKSpriteNode(imageNamed: "المستودع٢")
         background.position = CGPoint(x: size.width / 2, y: size.height / 2)
         background.size = size
         background.zPosition = -1
         addChild(background)
+
+        // ✅ صورة الكراتين
+        crateBox = SKSpriteNode(imageNamed: "الكراتين٢")
+        crateBox.zPosition = 0
+        self.crateBox.size = CGSize(width: 365.43, height: 478.88)
+        self.crateBox.position = CGPoint(x: 350, y: 275.65)
+        crateBox.name = "crate"
+        addChild(crateBox)
 
         // زر شفاف فوق الزبالة
         let trashButton = SKSpriteNode(color: .clear, size: CGSize(width: 100, height: 100))
@@ -51,7 +62,7 @@ class CratesPage: SKScene {
         if tappedNode.name == "trash" {
             let nextScene = TrashPage(size: size)
             nextScene.scaleMode = .aspectFill
-            view?.presentScene(nextScene, transition: .fade(withDuration: 2.0))
+            view?.presentScene(nextScene, transition: .fade(withDuration: 1.5))
 
         } else if tappedNode.name == "phone" {
             if let view = self.view, let rootVC = view.window?.rootViewController {
@@ -60,7 +71,7 @@ class CratesPage: SKScene {
                 fadeView.alpha = 0.0
                 view.addSubview(fadeView)
 
-                UIView.animate(withDuration: 2.0, animations: {
+                UIView.animate(withDuration: 1.5, animations: {
                     fadeView.alpha = 1.0
                 }, completion: { _ in
                     let lockScreen = UIHostingController(rootView: LockScreen())
@@ -74,7 +85,7 @@ class CratesPage: SKScene {
         } else if tappedNode.name == "down" {
             let nextScene = CafeScene(size: size)
             nextScene.scaleMode = .aspectFill
-            view?.presentScene(nextScene, transition: .fade(withDuration: 1.0))
+            view?.presentScene(nextScene, transition: .fade(withDuration: 1.5))
         }
     }
 

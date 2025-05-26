@@ -2,68 +2,86 @@ import SpriteKit
 
 class FirstPage: SKScene {
 
-    private var inventorySlots: [SKShapeNode] = []  // ✅ شريط الأدلة
+    private var inventorySlots: [SKShapeNode] = []
+    private var crateBox: SKSpriteNode!
+    private var background: SKSpriteNode!
 
     override func didMove(to view: SKView) {
         backgroundColor = .white
+        self.anchorPoint = CGPoint(x: 0, y: 0)
+
         setupBackground()
-        setupButton()
         setupInventoryBar()
-        addDirectionButtons() // ✅ أضفنا زر السهم
+        addDirectionButtons()
     }
 
-    // الخلفية
     func setupBackground() {
-        let bgTexture = SKTexture(imageNamed: "المستودع")
-        let bg = SKSpriteNode(texture: bgTexture)
-        bg.zPosition = -1
-        bg.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        bg.aspectFillToSize(size)
-        addChild(bg)
-    }
+        // ✅ الخلفية
+        background = SKSpriteNode(imageNamed: "المستودع١")
+        background.zPosition = -1
+        background.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        background.aspectFillToSize(size)
+        addChild(background)
 
-    // الزر المخفي على الكراتين
-    func setupButton() {
-        let tapArea = SKSpriteNode(color: .clear, size: CGSize(width: 250, height: 300))
-        tapArea.position = CGPoint(x: size.width * 0.40, y: size.height * 0.50)
-        tapArea.name = "toCrates"
-        addChild(tapArea)
+        // ✅ الكراتين
+        crateBox = SKSpriteNode(imageNamed: "الكراتين١")
+        crateBox.zPosition = 0
+        crateBox.size = CGSize(width: 365.92, height: 484.67)
+        crateBox.position = CGPoint(x: 550, y: 330)
+        crateBox.name = "crate"
+        addChild(crateBox)
     }
 
     // ✅ زر السهم (down)
     func addDirectionButtons() {
         let buttonSize = CGSize(width: 60, height: 60)
-
         let downButton = SKSpriteNode(imageNamed: "ArrowDown")
         downButton.name = "down"
         downButton.size = buttonSize
-
-        // ✅ ضفنا السهم في الوسط تحت شوي
         downButton.position = CGPoint(x: size.width / 2, y: size.height * 0.05)
-
         downButton.zPosition = 100
         addChild(downButton)
     }
 
-
-    // التفاعل مع الزر
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return }
         let tappedNode = atPoint(location)
 
-        if tappedNode.name == "toCrates" {
-            let nextScene = CratesPage(size: size)
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(with: .black, duration: 2.0)
-            view?.presentScene(nextScene, transition: transition)
+        if tappedNode.name == "crate" {
+            // ✅ 1. حرك الكرتون لليسار
+            let moveLeft = SKAction.move(to: CGPoint(x: 127.49, y: 275.65), duration: 0.5)
+
+            // ✅ 2. غير الخلفية والصورة بعد الحركة
+            let changeTexture = SKAction.run {
+                self.background.texture = SKTexture(imageNamed: "المستودع٢")
+                self.crateBox.texture = SKTexture(imageNamed: "الكراتين٢")
+                self.crateBox.size = CGSize(width: 365.43, height: 478.88)
+                self.crateBox.position = CGPoint(x: 350, y: 275.65)
+            }
+
+            // ✅ 3. تأخير خفيف
+            let waitBeforeNextScene = SKAction.wait(forDuration: 0.8)
+
+            // ✅ 4. الانتقال لمشهد CratesPage
+            let goToCrates = SKAction.run {
+                let cratesScene = CratesPage(size: self.size)
+                cratesScene.scaleMode = self.scaleMode
+                self.view?.presentScene(cratesScene, transition: .fade(withDuration: 1.5))
+            }
+
+            // ✅ 5. تنفيذ التسلسل
+            let sequence = SKAction.sequence([moveLeft, changeTexture, waitBeforeNextScene, goToCrates])
+            crateBox.run(sequence)
+        
+
         } else if tappedNode.name == "down" {
             let cafeScene = CafeScene(size: self.size)
             cafeScene.scaleMode = self.scaleMode
-            view?.presentScene(cafeScene, transition: .fade(withDuration: 1.0))
+            view?.presentScene(cafeScene, transition: .fade(withDuration: 1.5))
         }
     }
 
-    // شريط الأدلة
+    // ✅ شريط الأدلة
     private func setupInventoryBar() {
         let slotSize = CGSize(width: 65, height: 70)
         let totalSlots = 5

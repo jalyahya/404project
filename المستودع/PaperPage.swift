@@ -12,3 +12,4 @@ class PaperPage: SKScene {
         addChild(paper)
     }
 }
+
